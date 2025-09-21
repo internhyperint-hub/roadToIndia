@@ -1,284 +1,261 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
+import { Search, User, ShoppingCart, Heart, Share2, Star } from 'lucide-react';
 import Banner from "./Banner";
-import {
-  Search,
-  User,
-  ShoppingCart,
-  Minus,
-  Plus,
-  MessageCircle,
-} from "lucide-react";
 
-const ProductPage = () => {
+export default function SpitiValleyTShirtPage() {
+  const [selectedColor, setSelectedColor] = useState('Black Regular');
+  const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
 
-  const incrementQuantity = () => setQuantity((prev) => prev + 1);
-  const decrementQuantity = () =>
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#E7E1D7' }}>
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Top announcement bar */}
-          <div className="bg-yellow-400 text-black text-center py-2 text-sm font-medium overflow-hidden whitespace-nowrap">
-            <div className="animate-marquee">
-              📢 FLAT 20% OFF ON PREPAID PAYMENTS! 🛍️ BIG BILLION SALE LIVE! 😍
-              🚚FREE SHIPPING!⚡ 📢 FLAT 20% OFF ON PREPAID PAYMENTS! 🛍️ BIG
-              BILLION SALE LIVE!
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-8">
+            <div className="w-[100px]">
+              <img src="https://roadstoindia.com/cdn/shop/files/roads_to_india_900_900_black.png?v=1678262497&width=500" alt="" />
             </div>
-          </div>
-
-          {/* Main header */}
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mr-4">
-                <div className="text-white text-center">
-                  <div className="text-xs">car</div>
-                  <div className="text-lg font-bold">dhobi</div>
-                </div>
-              </div>
-            </div>
-
             <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-700 hover:text-black">
-                Home
-              </a>
-              <a href="#" className="text-gray-700 hover:text-black">
-                Our Exclusive Products
-              </a>
-              <div className="relative group">
-                <a
-                  href="#"
-                  className="text-gray-700 hover:text-black flex items-center"
-                >
-                  Complete Car Care
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <a href="#" className="text-gray-700 hover:text-black">
-                Motorbike Care
-              </a>
-              <a href="#" className="text-gray-700 hover:text-black">
-                Contact us
-              </a>
+              <a href="#" className="text-gray-700 hover:text-black">Home</a>
+              <a href="#" className="text-gray-700 hover:text-black">Collection</a>
+              <a href="#" className="text-gray-700 hover:text-black">Women</a>
+              <a href="#" className="text-gray-700 hover:text-black">Bagnan Store</a>
+              <a href="#" className="text-gray-700 hover:text-black">Contact</a>
             </nav>
-
-            <div className="flex items-center space-x-4">
-              <Search className="w-5 h-5 text-gray-600" />
-              <User className="w-5 h-5 text-gray-600" />
-              <div className="relative">
-                <ShoppingCart className="w-5 h-5 text-gray-600" />
-                <span className="absolute -top-2 -right-2 bg-black text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">
-                  0
-                </span>
-              </div>
-            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Search className="w-6 h-6 cursor-pointer" />
+            <User className="w-6 h-6 cursor-pointer" />
+            <ShoppingCart className="w-6 h-6 cursor-pointer" />
           </div>
         </div>
       </header>
 
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex items-center text-sm text-gray-600">
-          <a href="#" className="hover:text-black">
-            Home
-          </a>
-          <span className="mx-2"></span>
-          <a href="#" className="hover:text-black">
-            Bundle
-          </a>
-          <span className="mx-2"></span>
-          <span className="text-gray-900">
-            Car Dhobi Elite 600 GSM Microfiber Cloth (Pack of 2)
-          </span>
-        </div>
-      </div>
-
-      {/* Product Section */}
-      <div className="max-w-7xl mx-auto px-4 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Product Images */}
-          <div className="flex">
-            {/* Thumbnail Images */}
-            <div className="flex flex-col space-y-4 mr-4">
-              <div className="w-16 h-16 border-2 border-gray-300 rounded-lg overflow-hidden">
-                <img
-                  src="https://cardhobi.co.in/cdn/shop/files/custom_resized_a0718ec4-28ec-4d1e-ad21-f92b768a4e52.jpg?v=1756458595&width=1346"
-                  alt="Thumbnail 1"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-16 h-16 border border-gray-300 rounded-lg overflow-hidden">
-                <img
-                  src="https://cardhobi.co.in/cdn/shop/files/custom_resized_fc5bb762-c6f5-4514-a2a9-14d3703914d2.jpg?v=1756458595&width=1346"
-                  alt="Thumbnail 2"
-                  className="w-full h-full object-cover bg-gray-200"
-                />
-              </div>
-              <div className="w-16 h-16 border border-gray-300 rounded-lg overflow-hidden">
-                <img
-                  src="https://cardhobi.co.in/cdn/shop/files/custom_resized_fc5bb762-c6f5-4514-a2a9-14d3703914d2.jpg?v=1756458595&width=1100"
-                  alt="Thumbnail 3"
-                  className="w-full h-full object-cover bg-gray-200"
-                />
-              </div>
-            </div>
-
-            {/* Main Product Image */}
-            <div className="flex-1 relative">
-              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden relative">
-                <img
-                  src="https://cardhobi.co.in/cdn/shop/files/8_82b2c9e1-f4e3-4552-a9fe-345a1dbd924f.png?v=1756458595&width=1346"
-                  alt="Car Dhobi Elite Microfiber Cloth Pack"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 h-screen">
+          {/* Product Image */}
+          <div className="bg-white rounded-lg p-8 flex justify-center items-center">
+            <div className="relative w-full aspect-square flex justify-center items-center">
+              <img
+                src="https://roadstoindia.com/cdn/shop/files/Black1_jpg_6e9d4fca-0c21-41ae-8c8f-b48fee2cdf2a.jpg?v=1757662373"
+                alt="Lost in Spiti Valley T-Shirt"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
           {/* Product Details */}
-          <div className="space-y-6">
+          <div className="space-y-6 overflow-y-auto max-h-screen pr-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                Car Dhobi Elite 600 GSM Microfiber Cloth (Pack of 2)
+              <p className="text-sm text-gray-500 mb-2">ROADS TO INDIA</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                Roads to India® Pure Cotton Regular, Oversized Travel t-shirt for Men - Lost in Spiti Valley - Unisex Round Neck Printed Casual fit Drop Shoulder 180-220 GSM | S - 5XL | Black
               </h1>
+            </div>
+            <Banner />
 
-              <div className="flex items-baseline space-x-2 mb-4">
-                <span className="text-2xl font-bold text-gray-900">
-                  Rs. 599
-                </span>
-                <span className="text-lg text-gray-500 line-through">
-                  Rs. 1,099
-                </span>
-              </div>
-              <hr className="border-yellow-400 border-t my-1" />
-              <Banner />
-              <hr className="border-yellow-400 border-t my-1" />
-
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-sm text-gray-600">
-                  or 3 monthly payments of
-                </span>
-                <span className="font-bold">₹366</span>
-                <span className="text-sm text-gray-600">with</span>
-                <span className="text-blue-600 font-bold">snapmint</span>
-                <span className="text-gray-400 text-xs">ⓘ</span>
-              </div>
-
-              <p className="text-sm text-gray-600 mb-4">
-                UPI & Cards Accepted, Online approval in 2 minutes
-              </p>
-
-              <p className="text-red-600 font-medium mb-6">
-                Only 3 item(s) left in stock!
-              </p>
+            {/* Price */}
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-500 line-through">Rs. 899.00</span>
+              <span className="text-2xl font-bold text-gray-900">Rs. 499.00</span>
+              <span className="bg-red-100 text-red-800 text-sm px-2 py-1 rounded">Sale</span>
             </div>
 
-            {/* Quantity and Add to Cart */}
+            <p className="text-sm text-gray-600">
+              Tax included. <a href="#" className="underline">Shipping</a> calculated at checkout.
+            </p>
+
+            {/* Color Selection */}
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">Color</label>
+              <div className="flex space-x-3">
+                <button
+                  onClick={() => setSelectedColor('Black Regular')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedColor === 'Black Regular'
+                    ? 'bg-black text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                >
+                  Black Regular
+                </button>
+                <button
+                  onClick={() => setSelectedColor('Black Oversized')}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedColor === 'Black Oversized'
+                    ? 'bg-black text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                >
+                  Black Oversized
+                </button>
+              </div>
+            </div>
+
+            {/* Size Selection */}
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">Size</label>
+              <div className="grid grid-cols-4 gap-2">
+                {['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`py-2 px-3 border rounded text-sm font-medium transition-colors ${selectedSize === size
+                      ? 'border-black bg-black text-white'
+                      : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
+                      }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quantity */}
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-3">Quantity</label>
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
+                >
+                  -
+                </button>
+                <span className="w-12 text-center">{quantity}</span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
             <div className="space-y-4">
+              <button className="w-full bg-black text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                Add to Cart
+              </button>
+              <button className="w-full border border-gray-300 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                Buy it now
+              </button>
+            </div>
+
+            {/* Additional Actions */}
+            <div className="flex items-center justify-center space-x-6 pt-4">
+              <button className="flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-800">
+                <Heart className="w-4 h-4" />
+                <span>Add to Wishlist</span>
+              </button>
+              <button className="flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-800">
+                <Share2 className="w-4 h-4" />
+                <span>Share</span>
+              </button>
+            </div>
+
+            {/* Product Features */}
+            <div className="border-t pt-6 space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">100% Pure Cotton</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">180-220 GSM Premium Quality</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">Unisex Round Neck Design</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">Drop Shoulder Casual Fit</span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        {/* Product Description and Size Guide */}
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* Product Description - 60% (3/5 columns) */}
+          <div className="lg:col-span-3 bg-white rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">Product Description</h2>
+            <div className="prose max-w-none text-gray-700 leading-relaxed">
+              <p className="mb-4">
+                Carry the spirit of adventure wherever you go with the Roads to India Travel T-Shirt Collection — a premium range of graphic tees for explorers, wanderers, and dreamers. Inspired by iconic destinations, scenic landscapes, and the joy of the journey, these travel printed t-shirts are perfect for road trips, weekend getaways, and everyday wear that keeps the travel spirit alive.
+              </p>
+              <p className="mb-4">
+                From minimalist map designs and wanderlust quotes to bold illustrations of mountains, beaches, and legendary routes, this collection celebrates the thrill of exploration. Whether you're looking for a travel t-shirt for men, a wanderlust-inspired tee for women, or an oversized unisex travel shirt, these designs fit every traveler's lifestyle.
+              </p>
+              <p className="mb-4">
+                Made from 100% combed cotton for solid colors and a soft cotton blend in heathers, our travel graphic t-shirts offer breathability, durability, and comfort — ideal for long travel days or casual city strolls. Choose between drop-shoulder oversized fits for a relaxed, streetwear vibe or classic regular cuts for a timeless look.
+              </p>
+            </div>
+          </div>
+
+          {/* Size Guide - 40% (2/5 columns) */}
+          <div className="lg:col-span-2 bg-white rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">Size Guide</h2>
+            <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Quantity
-                </label>
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center border border-gray-300 rounded-lg">
-                    <button
-                      onClick={decrementQuantity}
-                      className="p-2 hover:bg-gray-50"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="px-4 py-2 min-w-[3rem] text-center">
-                      {quantity}
-                    </span>
-                    <button
-                      onClick={incrementQuantity}
-                      className="p-2 hover:bg-gray-50"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
+                <h3 className="text-lg font-semibold mb-4">Regular Fit (in inches)</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-2">Size</th>
+                        <th className="text-left py-2">Chest</th>
+                        <th className="text-left py-2">Length</th>
+                        <th className="text-left py-2">Sleeve</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b"><td className="py-2">S</td><td>38</td><td>26</td><td>7</td></tr>
+                      <tr className="border-b"><td className="py-2">M</td><td>40</td><td>27</td><td>7.5</td></tr>
+                      <tr className="border-b"><td className="py-2">L</td><td>42</td><td>28</td><td>8</td></tr>
+                      <tr className="border-b"><td className="py-2">XL</td><td>44</td><td>29</td><td>8.5</td></tr>
+                      <tr><td className="py-2">2XL</td><td>46</td><td>30</td><td>9</td></tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-
-              <div className="space-y-3">
-                <button className="w-full bg-white border-2 border-gray-300 text-gray-900 py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                  Add to cart
-                </button>
-
-                <button className="w-full bg-black text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 transition-colors relative">
-                  <div className="absolute top-0 left-4 bg-green-500 text-white text-xs px-2 py-1 rounded-b-md">
-                    20% off on Prepaid orders
-                  </div>
-                  Buy It Now
-                </button>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Oversized Fit (in inches)</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-2">Size</th>
+                        <th className="text-left py-2">Chest</th>
+                        <th className="text-left py-2">Length</th>
+                        <th className="text-left py-2">Sleeve</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b"><td className="py-2">XL</td><td>46</td><td>29</td><td>9</td></tr>
+                      <tr className="border-b"><td className="py-2">2XL</td><td>48</td><td>30</td><td>9.5</td></tr>
+                      <tr className="border-b"><td className="py-2">3XL</td><td>50</td><td>31</td><td>10</td></tr>
+                      <tr className="border-b"><td className="py-2">4XL</td><td>52</td><td>32</td><td>10</td></tr>
+                      <tr><td className="py-2">5XL</td><td>54</td><td>33</td><td>10</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Trust Badges */}
-        <div className="mt-12 flex flex-wrap justify-center items-center space-x-8 space-y-4 text-gray-400">
-          <div className="flex items-center space-x-2">
-            <div className="w-12 h-8 border border-gray-300 rounded flex items-center justify-center text-xs">
-              COD
-            </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="w-12 h-12 border-2 border-gray-300 rounded-full flex items-center justify-center text-xs">
-              EASY
-            </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="w-12 h-12 border-2 border-gray-300 rounded-full flex items-center justify-center text-xs">
-              FREE
-            </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <div className="w-16 h-16 border-2 border-gray-300 rounded-full flex items-center justify-center text-xs">
-              100% SECURE
-            </div>
+            <p className="text-sm text-gray-600 mt-4">Note: Final size may vary by ±0.5 inches.</p>
           </div>
         </div>
       </div>
 
-      {/* WhatsApp Button */}
-      <div className="fixed bottom-6 right-6">
-        <button className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-colors">
-          <MessageCircle className="w-6 h-6" />
-        </button>
+      {/* Chat Widget Placeholder */}
+      <div className="fixed bottom-4 right-4 w-12 h-12 bg-black rounded-full flex items-center justify-center text-white cursor-pointer">
+        <span className="text-xs">💬</span>
+        <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs flex items-center justify-center text-white">
+          1
+        </div>
       </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(100%);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-
-        .animate-marquee {
-          animation: marquee 20s linear infinite;
-        }
-      `}</style>
     </div>
   );
-};
-
-export default ProductPage;
+}
